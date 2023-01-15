@@ -3,4 +3,5 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, min-content));
     padding: 20px 50px;
     justify-content: center;
+    grid-gap: 10px;
 }
