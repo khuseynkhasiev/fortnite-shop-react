@@ -1,7 +1,11 @@
 import GoodsItem from "./GoodsItem";
 import './goodList.css';
 
-function GoodsList({ goods = []}){
+function GoodsList(props){
+    const {
+        goods = [],
+        addToBasket
+    } = props;
 
     if (!goods.length) {
         return <h3>Nothing here</h3>
@@ -14,7 +18,7 @@ function GoodsList({ goods = []}){
                 <h3>Nothing here</h3>
                 :
                 goods.map(item => {
-                return <GoodsItem key={item.id} {...item}/>
+                return <GoodsItem key={item.id} {...item} addToBasket={addToBasket} />
             })}
         </div>
     )

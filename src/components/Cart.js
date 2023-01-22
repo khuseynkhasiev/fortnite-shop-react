@@ -1,11 +1,11 @@
 import './cart.css';
 function Cart(props) {
-    const {quatity = []} = props;
+    const {quantity = 0} = props;
     return (
         <div className="cart blue accent-2 white-text">
             <i className="material-icons cart__icon">local_grocery_store
             </i>
-            { quatity ? (<span>{quatity}</span>) : null}
+            { quantity ? (<span className="cart__quantity">{quantity}</span>) : null}
         </div>
     )
 }
