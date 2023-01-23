@@ -4,11 +4,13 @@ import {API_KEY, API_URL} from "../config";
 import GoodsList from "./GoodsList";
 import Preloader from "./Preloader";
 import Cart from "./Cart";
+import BasketList from "./BasketList";
 function Shop() {
 
     const [goods, setGoods] = useState([]);
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState([]);
+    const [onBasketPopup, setOnBasketPopup] = useState(false);
 
     useEffect(() => {
         fetch(API_URL, {
@@ -48,12 +50,44 @@ function Shop() {
             setOrder(newOrder);
         }
     }
+    function removeFromBasket(itemId){
+        const newOrder = order.filter(el => el.id !== itemId);
+        setOrder(newOrder);
+    }
+    function handleBasketPopup(){
+        setOnBasketPopup(!onBasketPopup);
+    }
+
+    function incrementBasket(itemId){
+        const newOrder = order.map((el) => el.id === itemId ? {...el, quantity: el.quantity + 1} : el)
+        setOrder(newOrder);
+    }
+    function decrementBasket(itemId){
+        const newOrder = order.map((el) => el.id === itemId ? {...el, quantity: el.quantity > 0 ? el.quantity - 1 : el.quantity} : el)
+        setOrder(newOrder);
+    }
 
     return (
         <>
             <main className="main">
-                <Cart quantity={order.length} />
-                {loading ? <Preloader /> : <GoodsList goods={goods} addToBasket={addToBasket} />}
+                {
+                    onBasketPopup &&
+                    <BasketList
+                        order={order}
+                        handleBasketPopup={handleBasketPopup}
+                        removeFromBasket={removeFromBasket}
+                        incrementBasket={incrementBasket}
+                        decrementBasket={decrementBasket}
+                    />
+                }
+                <Cart
+                    quantity={order.length}
+                    handleBasketPopup={handleBasketPopup}
+                />
+                {loading ? <Preloader /> : <GoodsList
+                    goods={goods}
+                    addToBasket={addToBasket}
+                />}
             </main>
         </>
     )

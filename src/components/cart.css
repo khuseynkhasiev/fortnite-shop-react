@@ -4,6 +4,6 @@
     right: 20px;
     z-index: 1;
     padding: 10px;
-}
-.cart__icon{
+    cursor: pointer;
+    border-radius: 10%;
 }

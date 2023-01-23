@@ -4,7 +4,7 @@ import './goodList.css';
 function GoodsList(props){
     const {
         goods = [],
-        addToBasket
+        addToBasket,
     } = props;
 
     if (!goods.length) {
@@ -18,7 +18,11 @@ function GoodsList(props){
                 <h3>Nothing here</h3>
                 :
                 goods.map(item => {
-                return <GoodsItem key={item.id} {...item} addToBasket={addToBasket} />
+                return <GoodsItem
+                    key={item.id}
+                    {...item}
+                    addToBasket={addToBasket}
+                />
             })}
         </div>
     )

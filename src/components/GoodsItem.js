@@ -6,7 +6,7 @@ function GoodsItem(props) {
         description,
         price,
         full_background,
-        addToBasket
+        addToBasket,
     } = props;
 
     return (
