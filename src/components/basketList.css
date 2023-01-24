@@ -27,3 +27,8 @@
         opacity: 1;
     }
 }
+.basket-list__bottom{
+    display: flex;
+    justify-content: space-around;
+}
+

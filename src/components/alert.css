@@ -1,0 +1,16 @@
+.alert__container{
+    position: fixed;
+    top: 36px;
+    right: 80px;
+    animation: alert-basket 300ms ease-in-out;
+}
+
+@keyframes alert-basket {
+    from{
+        opacity: 0;
+        top: 50px
+    }
+    to{
+        opacity: 1;
+    }
+}
